@@ -80,3 +80,44 @@ class CustomSubheading extends StatelessWidget {
     );
   }
 }
+
+/// A reusable header widget with title and step tracker.
+class CustomHeader extends StatelessWidget {
+  final String title;
+  final int step;
+  final int totalSteps;
+
+  const CustomHeader({
+    Key? key,
+    required this.title,
+    required this.step,
+    required this.totalSteps,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.brown),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: Colors.brown.shade100,
+              borderRadius: BorderRadius.circular(32),
+            ),
+            child: Text(
+              '$step of $totalSteps',
+              style: const TextStyle(fontSize: 14, color: Colors.brown),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

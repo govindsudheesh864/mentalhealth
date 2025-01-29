@@ -1,368 +1,168 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:grouped_list/grouped_list.dart';
+import 'package:mentalhealth/InitialAssesmentScreens/selectgenderscreen.dart';
 
-class CodiaPage extends StatefulWidget {
-  CodiaPage({super.key});
+class SelectAgeScreen extends StatefulWidget {
+  const SelectAgeScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => _CodiaPage();
+  State<SelectAgeScreen> createState() => _SelectAgeScreenState();
 }
 
-class _CodiaPage extends State<CodiaPage> {
+class _SelectAgeScreenState extends State<SelectAgeScreen> {
+  int selectedAge = 18; // Default age
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Container(
-        height: 812,
-        decoration: BoxDecoration(
-          color: const Color(0xfff7f4f2),
-          borderRadius: BorderRadius.circular(40),
+    return Scaffold(
+      backgroundColor: const Color(0xFFF2F5EB),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF4E3321)),
+          onPressed: () => Navigator.pop(context),
         ),
-        child: Stack(
-          children: [
-            Positioned(
-              left: 0,
-              width: 375,
-              bottom: 0,
-              height: 34,
-              child: Image.asset(
-                'images/image_94371.png',
-                width: 375,
-                height: 34,
-              ),
+        title: const Text(
+          "Assessment",
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF4E3321),
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            margin: const EdgeInsets.only(right: 16),
+            decoration: BoxDecoration(
+              color: const Color(0xFFD5C4B1),
+              borderRadius: BorderRadius.circular(16),
             ),
-            Positioned(
-              left: 0,
-              width: 375,
-              top: 0,
-              height: 44,
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 308,
-                    width: 3,
-                    top: 18,
-                    height: 10,
-                    child: Container(
-                      width: 3,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        color: const Color(0xff4e3321),
-                        borderRadius: BorderRadius.circular(1234),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 303,
-                    width: 3,
-                    top: 20,
-                    height: 8,
-                    child: Container(
-                      width: 3,
-                      height: 8,
-                      decoration: BoxDecoration(
-                        color: const Color(0xff4e3321),
-                        borderRadius: BorderRadius.circular(1234),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 298,
-                    width: 3,
-                    top: 22,
-                    height: 6,
-                    child: Container(
-                      width: 3,
-                      height: 6,
-                      decoration: BoxDecoration(
-                        color: const Color(0xff4e3321),
-                        borderRadius: BorderRadius.circular(1234),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 293,
-                    width: 3,
-                    top: 24,
-                    height: 4,
-                    child: Container(
-                      width: 3,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: const Color(0xff4e3321),
-                        borderRadius: BorderRadius.circular(1234),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 336,
-                    width: 24.328,
-                    top: 17.333,
-                    height: 11.333,
-                    child: Image.asset(
-                      'images/image1_I9437250512214.png',
-                      width: 24.328,
-                      height: 11.333,
-                    ),
-                  ),
-                  Positioned(
-                    left: 33,
-                    width: 26,
-                    top: 16,
-                    height: 12,
-                    child: Image.asset(
-                      'images/image2_I94372106135041.png',
-                      width: 26,
-                      height: 12,
-                    ),
-                  ),
-                  Positioned(
-                    left: 315.929,
-                    width: 14.142,
-                    top: 18,
-                    height: 8.586,
-                    child: Image.asset(
-                      'images/image3_I94372106187371.png',
-                      width: 14.142,
-                      height: 8.586,
-                    ),
-                  ),
-                ],
-              ),
+            child: const Text(
+              "3 of 14",
+              style: TextStyle(fontSize: 14, color: Color(0xFF4E3321)),
             ),
-            Positioned(
-              left: 16,
-              width: 343,
-              top: 60,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center, // Ensures proper centering
+            children: [
+              // Question Text
+              const Text(
+                "What’s your age?",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF4E3321),
+                ),
+              ),
+              const SizedBox(height: 30),
+
+              // Age Selector - Centered Box and Proper Scrolling
+              Stack(
+                alignment: Alignment.center,
                 children: [
-                  Image.asset(
-                    'images/image_I943736157824.png',
-                    width: 48,
-                    height: 48,
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      child: Text(
-                        'Assessment',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 20,
-                            color: const Color(0xff4e3321),
-                            fontWeight: FontWeight.normal),
-                        maxLines: 9999,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
+                  // Green Highlight Box - 100% Centered
                   Container(
-                    height: 28,
+                    width: 256,
+                    height: 160,
                     decoration: BoxDecoration(
-                      color: const Color(0xffe8dcd8),
-                      borderRadius: BorderRadius.circular(32),
+                      color: const Color(0xFF9BB168),
+                      borderRadius: BorderRadius.circular(1234),
+                      border: Border.all(color: Colors.white, width: 2),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10, top: 6, right: 10, bottom: 6),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            '3 of 14',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                decoration: TextDecoration.none,
-                                fontSize: 14,
-                                color: const Color(0xff926247),
-                                fontWeight: FontWeight.normal),
-                            maxLines: 9999,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
+                    alignment: Alignment.center,
+                    child: Text(
+                      "$selectedAge",
+                      style: const TextStyle(
+                        fontSize: 140, // Perfect match
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                   ),
-                ],
-              ),
-            ),
-            Positioned(
-              left: 16,
-              right: 16,
-              top: 148,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          child: Text(
-                            'What’s your age?',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                decoration: TextDecoration.none,
-                                fontSize: 30,
-                                color: const Color(0xff4e3321),
-                                fontWeight: FontWeight.normal),
-                            maxLines: 9999,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 48),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        '16',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 30,
-                            color: const Color(0xffe1e0e0),
-                            fontWeight: FontWeight.normal),
-                        maxLines: 9999,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        '17',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 60,
-                            color: const Color(0xffaca8a5),
-                            fontWeight: FontWeight.normal),
-                        maxLines: 9999,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 8),
-                      Container(
-                        width: 256,
-                        height: 160,
-                        decoration: BoxDecoration(
-                          color: const Color(0xff9bb067),
-                          border: Border.all(
-                              color: const Color(0xfff2f4ea), width: 1),
-                          borderRadius: BorderRadius.circular(1234),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: const Color(0x3f9bb068),
-                                offset: Offset(0, 0),
-                                blurRadius: 0),
-                          ],
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                width: double.infinity,
-                                child: Text(
-                                  '18',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      decoration: TextDecoration.none,
-                                      fontSize: 128,
-                                      color: const Color(0xffffffff),
-                                      fontWeight: FontWeight.normal),
-                                  maxLines: 9999,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
+
+                  // Cupertino Picker for Smooth Scrolling
+                  SizedBox(
+                    height: 300,
+                    child: CupertinoPicker(
+                      itemExtent: 80,
+                      scrollController: FixedExtentScrollController(initialItem: selectedAge - 12),
+                      magnification: 1.4,
+                      squeeze: 1.3,
+                      selectionOverlay: Container(), // Removes default overlay
+                      onSelectedItemChanged: (index) {
+                        setState(() {
+                          selectedAge = index + 12;
+                        });
+                      },
+                      children: List.generate(
+                        100,
+                            (index) {
+                          int age = index + 12;
+                          bool isSelected = age == selectedAge;
+
+                          return Center(
+                            child: Text(
+                              "$age",
+                              style: TextStyle(
+                                fontSize: isSelected ? 0 : 50,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey.shade500.withOpacity(0.4),
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        '19',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 60,
-                            color: const Color(0xffaca8a5),
-                            fontWeight: FontWeight.normal),
-                        maxLines: 9999,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        '20',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 30,
-                            color: const Color(0xffe1e0e0),
-                            fontWeight: FontWeight.normal),
-                        maxLines: 9999,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 48),
-                  Container(
-                    width: 343,
-                    height: 56,
-                    decoration: BoxDecoration(
-                      color: const Color(0xff4e3321),
-                      borderRadius: BorderRadius.circular(1000),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 24, top: 16, right: 24, bottom: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Continue',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    decoration: TextDecoration.none,
-                                    fontSize: 18,
-                                    color: const Color(0xffffffff),
-                                    fontWeight: FontWeight.normal),
-                                maxLines: 9999,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              const SizedBox(width: 12),
-                              Image.asset(
-                                'images/image_I9438360428831.png',
-                                width: 24,
-                                height: 24,
-                              ),
-                            ],
-                          ),
-                        ],
+                          );
+                        },
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
+
+              const SizedBox(height: 40),
+
+              // Continue Button
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const SelectGenderScreen()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF4E3321),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Continue",
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                        SizedBox(width: 10),
+                        Icon(Icons.arrow_forward, color: Colors.white, size: 20),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

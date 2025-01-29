@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'common_widgets.dart';
+import 'package:mentalhealth/CommonFunctions/common_widgets.dart';
+import 'package:mentalhealth/InitialAssesmentScreens/selectagescreen.dart';
 
 class WelcomeScreen6 extends StatelessWidget {
   const WelcomeScreen6({Key? key}) : super(key: key);
@@ -37,7 +38,7 @@ class WelcomeScreen6 extends StatelessWidget {
               const Spacer(),
               // Main Image
               Image.asset(
-                'images/image1_93955.png',
+                'lib/images/image1_93955.png',
                 width: 300,
                 height: 300,
               ),
@@ -48,11 +49,11 @@ class WelcomeScreen6 extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               // Subheading Icon
-              Image.asset(
-                'images/image2_32714.png',
-                width: 80,
-                height: 80,
-              ),
+             // Image.asset(
+              //  'images/image2_32714.png',
+           //     width: 80,
+          //      height: 80,
+         //     ),
               const Spacer(),
               // Finish Button
               CustomButton(
@@ -63,7 +64,7 @@ class WelcomeScreen6 extends StatelessWidget {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MainAppScreen(),
+                      builder: (context) => const SelectAgeScreen(),
                     ),
                   );
                 },
@@ -77,19 +78,4 @@ class WelcomeScreen6 extends StatelessWidget {
   }
 }
 
-// Placeholder for MainAppScreen
-class MainAppScreen extends StatelessWidget {
-  const MainAppScreen({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(
-          'Welcome to the Main App!',
-          style: Theme.of(context).textTheme.headline4,
-        ),
-      ),
-    );
-  }
-}

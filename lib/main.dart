@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'welcomescreen1.dart';
+import 'package:mentalhealth/WelcomeScreens/welcomescreen1.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'common_widgets.dart';
+import 'package:mentalhealth/CommonFunctions/common_widgets.dart';
+import 'package:mentalhealth/WelcomeScreens/welcomescreen4.dart';
+
 
 class WelcomeScreen3 extends StatelessWidget {
   const WelcomeScreen3({Key? key}) : super(key: key);
@@ -37,7 +39,7 @@ class WelcomeScreen3 extends StatelessWidget {
               const Spacer(),
               // Main Image
               Image.asset(
-                'images/image1_93940.png',
+                'lib/images/image1_93940.png',
                 width: 300,
                 height: 300,
               ),
@@ -48,11 +50,11 @@ class WelcomeScreen3 extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               // Subheading Icon
-              Image.asset(
-                'images/image2_32320.png',
-                width: 80,
-                height: 80,
-              ),
+            //  Image.asset(
+           //     'images/image2_32320.png',
+          //      width: 80,
+          //      height: 80,
+         //     ),
               const Spacer(),
               // Next Button
               CustomButton(
@@ -76,20 +78,3 @@ class WelcomeScreen3 extends StatelessWidget {
   }
 }
 
-// Placeholder for WelcomeScreen4
-class WelcomeScreen4 extends StatelessWidget {
-  const WelcomeScreen4({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xffe1e0e0),
-      body: Center(
-        child: Text(
-          'Welcome to Screen 4',
-          style: Theme.of(context).textTheme.headline4,
-        ),
-      ),
-    );
-  }
-}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'common_widgets.dart';
+import 'package:mentalhealth/CommonFunctions/common_widgets.dart';
+import 'package:mentalhealth/WelcomeScreens/welcomescreen5.dart';
 
 class WelcomeScreen4 extends StatelessWidget {
   const WelcomeScreen4({Key? key}) : super(key: key);
@@ -37,9 +38,9 @@ class WelcomeScreen4 extends StatelessWidget {
               const Spacer(),
               // Main Image
               Image.asset(
-                'images/image1_93945.png',
-                width: 300,
-                height: 300,
+                'lib/images/image2_32513.png',
+                width: 350,
+                height: 350,
               ),
               const SizedBox(height: 24),
               // Heading
@@ -48,11 +49,11 @@ class WelcomeScreen4 extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               // Subheading Icon
-              Image.asset(
-                'images/image2_32513.png',
-                width: 80,
-                height: 80,
-              ),
+             // Image.asset(
+              //  'lib/images/image2_32513.png',
+           //     width: 80,
+           //     height: 80,
+          //    ),
               const Spacer(),
               // Next Button
               CustomButton(
@@ -70,24 +71,6 @@ class WelcomeScreen4 extends StatelessWidget {
               const SizedBox(height: 30),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-// Placeholder for WelcomeScreen5
-class WelcomeScreen5 extends StatelessWidget {
-  const WelcomeScreen5({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xffffeac1),
-      body: Center(
-        child: Text(
-          'Welcome to Screen 5',
-          style: Theme.of(context).textTheme.headline4,
         ),
       ),
     );

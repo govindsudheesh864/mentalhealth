@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mentalhealth/CommonFunctions/common_widgets.dart';
-import 'package:mentalhealth/InitialAssesmentScreens/selectheightscreen.dart';
+import 'package:mentalhealth/InitialAssesmentScreens/selectweightscreen.dart';
 
 class SelectGenderScreen extends StatefulWidget {
   const SelectGenderScreen({super.key});
@@ -68,7 +68,7 @@ class _SelectGenderScreenState extends State<SelectGenderScreen> {
                   ? () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SelectHeightScreen()),
+                  MaterialPageRoute(builder: (context) => const SelectWeightScreen()),
                 );
               }
                   : () {}, // Empty function instead of null

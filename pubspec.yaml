@@ -38,6 +38,8 @@ dependencies:
   flutter_picker: ^2.0.0
   syncfusion_flutter_sliders: ^24.1.41
   flutter_svg: ^2.0.9
+  speech_to_text: ^7.0.0
+
 
 
 dev_dependencies:
@@ -85,6 +87,13 @@ flutter:
       - lib/images/sleep_fair.png
       - lib/images/sleep_good.png
       - lib/images/sleep_excellent.png
+      - lib/images/doctor_consult.png
+      - lib/images/prescribed.png
+      - lib/images/otc.png
+      - lib/images/not_taking.png
+      - lib/images/prefer_not_say.png
+      - lib/images/mental_health.png
+      - lib/images/mentalhealth.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

@@ -5,38 +5,43 @@ class CustomButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
   final IconData? icon;
+  final double? width;
 
   const CustomButton({
     Key? key,
     required this.label,
     required this.onPressed,
     this.icon,
+    this.width,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xff4e3321),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            label,
-            style: const TextStyle(fontSize: 18, color: Colors.white),
+    return SizedBox(
+      width: width ?? double.infinity, // Default to full width
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xff4e3321),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
           ),
-          if (icon != null) ...[
-            const SizedBox(width: 8),
-            Icon(icon, color: Colors.white),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              label,
+              style: const TextStyle(fontSize: 18, color: Colors.white),
+            ),
+            if (icon != null) ...[
+              const SizedBox(width: 8),
+              Icon(icon, color: Colors.white),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }
@@ -81,17 +86,21 @@ class CustomSubheading extends StatelessWidget {
   }
 }
 
-/// A reusable header widget with title and step tracker.
+/// A reusable header widget with a back button, title, and step tracker.
 class CustomHeader extends StatelessWidget {
   final String title;
   final int step;
   final int totalSteps;
+  final bool showBackButton;
+  final VoidCallback? onBack;
 
   const CustomHeader({
     Key? key,
     required this.title,
     required this.step,
     required this.totalSteps,
+    this.showBackButton = true,
+    this.onBack,
   }) : super(key: key);
 
   @override
@@ -101,9 +110,17 @@ class CustomHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            title,
-            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.brown),
+          if (showBackButton)
+            IconButton(
+              icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF4E3321)),
+              onPressed: onBack ?? () => Navigator.pop(context),
+            ),
+          Expanded(
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Color(0xff4e3321)),
+            ),
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),

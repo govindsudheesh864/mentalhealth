@@ -1,709 +1,279 @@
 import 'package:flutter/material.dart';
-import 'package:grouped_list/grouped_list.dart';
+import 'package:mentalhealth/InitialAssesmentScreens/expressionwritingscreen.dart';
 
-class CodiaPage extends StatefulWidget {
-  CodiaPage({super.key});
-
+class MentalHealthSymptomsScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _CodiaPage();
+  _MentalHealthSymptomsScreenState createState() =>
+      _MentalHealthSymptomsScreenState();
 }
 
-class _CodiaPage extends State<CodiaPage> {
+class _MentalHealthSymptomsScreenState
+    extends State<MentalHealthSymptomsScreen> {
+  TextEditingController _controller = TextEditingController();
+  List<String> enteredSymptoms = [];
+  List<String> suggestedSymptoms = [
+    "Anxiety",
+    "Fatigue",
+    "Irritability",
+    "Feeling Sad",
+    "Overthinking"
+  ];
+
+  void _onTextChanged(String value) {
+    if (value.endsWith(' ')) {
+      String symptom = value.trim();
+      if (symptom.isNotEmpty && !enteredSymptoms.contains(symptom)) {
+        setState(() {
+          enteredSymptoms.add(symptom);
+          _controller.clear();
+        });
+      }
+    }
+  }
+
+  void _addSuggestedSymptom(String symptom) {
+    if (!enteredSymptoms.contains(symptom)) {
+      setState(() {
+        enteredSymptoms.add(symptom);
+      });
+    }
+  }
+
+  void _removeSymptom(String symptom) {
+    setState(() {
+      enteredSymptoms.remove(symptom);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Container(
-        width: 375,
-        height: 812,
-        decoration: BoxDecoration(
-          color: const Color(0xfff7f4f2),
-          borderRadius: BorderRadius.circular(40),
+    return Scaffold(
+      backgroundColor: const Color(0xFFF7F4F2),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF4E3321)),
+          onPressed: () => Navigator.pop(context),
         ),
-        child: Stack(
+        title: const Text(
+          "Assessment",
+          style: TextStyle(
+              fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF4E3321)),
+        ),
+        centerTitle: true,
+        actions: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            margin: const EdgeInsets.only(right: 16),
+            decoration: BoxDecoration(
+              color: const Color(0xFFD5C4B1),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: const Text(
+              "11 of 14",
+              style: TextStyle(fontSize: 14, color: Color(0xFF4E3321)),
+            ),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Positioned(
-              left: 0,
-              width: 375,
-              bottom: 0,
-              height: 34,
-              child: Image.asset(
-                'images/image_94621.png',
-                width: 375,
-                height: 34,
+            const SizedBox(height: 20),
+
+            const Text(
+              "Do you have other mental health symptoms?",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF4E3321),
               ),
             ),
-            Positioned(
-              left: 0,
-              width: 375,
-              top: 0,
-              height: 44,
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 308,
-                    width: 3,
-                    top: 18,
-                    height: 10,
-                    child: Container(
-                      width: 3,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        color: const Color(0xff4e3321),
-                        borderRadius: BorderRadius.circular(1234),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 303,
-                    width: 3,
-                    top: 20,
-                    height: 8,
-                    child: Container(
-                      width: 3,
-                      height: 8,
-                      decoration: BoxDecoration(
-                        color: const Color(0xff4e3321),
-                        borderRadius: BorderRadius.circular(1234),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 298,
-                    width: 3,
-                    top: 22,
-                    height: 6,
-                    child: Container(
-                      width: 3,
-                      height: 6,
-                      decoration: BoxDecoration(
-                        color: const Color(0xff4e3321),
-                        borderRadius: BorderRadius.circular(1234),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 293,
-                    width: 3,
-                    top: 24,
-                    height: 4,
-                    child: Container(
-                      width: 3,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: const Color(0xff4e3321),
-                        borderRadius: BorderRadius.circular(1234),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 336,
-                    width: 24.328,
-                    top: 17.333,
-                    height: 11.333,
-                    child: Image.asset(
-                      'images/image1_I9462250512214.png',
-                      width: 24.328,
-                      height: 11.333,
-                    ),
-                  ),
-                  Positioned(
-                    left: 33,
-                    width: 26,
-                    top: 16,
-                    height: 12,
-                    child: Image.asset(
-                      'images/image2_I94622106135041.png',
-                      width: 26,
-                      height: 12,
-                    ),
-                  ),
-                  Positioned(
-                    left: 315.929,
-                    width: 14.142,
-                    top: 18,
-                    height: 8.586,
-                    child: Image.asset(
-                      'images/image3_I94622106187371.png',
-                      width: 14.142,
-                      height: 8.586,
-                    ),
-                  ),
-                ],
-              ),
+
+            const SizedBox(height: 20),
+
+            Image.asset(
+              "lib/images/mental_health.png",
+              width: 286,
+              height: 220,
             ),
-            Positioned(
-              left: 16,
+
+            const SizedBox(height: 20),
+
+            // Text Input Field
+            Container(
               width: 343,
-              top: 60,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(40),
+                border: Border.all(color: const Color(0xFF9BB168)),
+              ),
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 8,
                 children: [
-                  Image.asset(
-                    'images/image_I946236157824.png',
-                    width: 48,
-                    height: 48,
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      child: Text(
-                        'Assessment',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 20,
-                            color: const Color(0xff4e3321),
-                            fontWeight: FontWeight.normal),
-                        maxLines: 9999,
-                        overflow: TextOverflow.ellipsis,
+                  ...enteredSymptoms.map((symptom) => _buildSymptomChip(symptom)),
+                  SizedBox(
+                    width: 220,
+                    child: TextField(
+                      controller: _controller,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Type symptom...",
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
+                      onChanged: _onTextChanged,
                     ),
                   ),
-                  const SizedBox(width: 12),
-                  Container(
-                    height: 28,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffe8dcd8),
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10, top: 6, right: 10, bottom: 6),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            '11 of 14',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                decoration: TextDecoration.none,
-                                fontSize: 14,
-                                color: const Color(0xff926247),
-                                fontWeight: FontWeight.normal),
-                            maxLines: 9999,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
-                      ),
-                    ),
+                  GestureDetector(
+                    onTap: () {
+                      if (_controller.text.trim().isNotEmpty) {
+                        _onTextChanged(_controller.text + " ");
+                      }
+                    },
+                    child: const Icon(Icons.add_circle,
+                        color: Color(0xFF9BB168),
+                        size: 30),
                   ),
                 ],
               ),
             ),
-            Positioned(
-              left: 16,
-              top: 148,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+
+            const SizedBox(height: 20),
+
+            // Suggested Symptoms
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: suggestedSymptoms
+                  .map((symptom) => _buildSuggestionChip(symptom))
+                  .toList(),
+            ),
+
+            const SizedBox(height: 30),
+
+            // Continue Button
+            ElevatedButton(
+              onPressed: enteredSymptoms.isNotEmpty
+                  ? () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ExpressionAnalysisScreen()),
+                );
+              }
+                  : null,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF4E3321),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(1000),
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+              ),
+              child: const Row(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: 343,
-                    child: Text(
-                      'Do you have other mental health symptoms?',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          decoration: TextDecoration.none,
-                          fontSize: 30,
-                          color: const Color(0xff4e3321),
-                          fontWeight: FontWeight.normal),
-                      maxLines: 9999,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                  Text(
+                    "Continue",
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
-                  const SizedBox(height: 32),
-                  Image.asset(
-                    'images/image_94626.png',
-                    width: 343,
-                    height: 182,
-                  ),
-                  const SizedBox(height: 32),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 343,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffffffff),
-                          border: Border.all(
-                              color: const Color(0xff9bb067), width: 1),
-                          borderRadius: BorderRadius.circular(40),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: const Color(0x3f9bb068),
-                                offset: Offset(0, 0),
-                                blurRadius: 0),
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: Container(
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Container(
-                                                        height: 24,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: const Color(
-                                                              0xfff2f4ea),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(32),
-                                                        ),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  left: 8,
-                                                                  top: 4,
-                                                                  right: 8,
-                                                                  bottom: 4),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Text(
-                                                                'Social Withdrawl',
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: TextStyle(
-                                                                    decoration:
-                                                                        TextDecoration
-                                                                            .none,
-                                                                    fontSize:
-                                                                        14,
-                                                                    color: const Color(
-                                                                        0xff9bb067),
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal),
-                                                                maxLines: 9999,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(width: 8),
-                                                      Container(
-                                                        height: 24,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: const Color(
-                                                              0xfff2f4ea),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(32),
-                                                        ),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  left: 8,
-                                                                  top: 4,
-                                                                  right: 8,
-                                                                  bottom: 4),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Text(
-                                                                'Feeling Numbness',
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: TextStyle(
-                                                                    decoration:
-                                                                        TextDecoration
-                                                                            .none,
-                                                                    fontSize:
-                                                                        14,
-                                                                    color: const Color(
-                                                                        0xff9bb067),
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal),
-                                                                maxLines: 9999,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(width: 8),
-                                                      Container(
-                                                        height: 24,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: const Color(
-                                                              0xfff2f4ea),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(32),
-                                                        ),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  left: 8,
-                                                                  top: 4,
-                                                                  right: 8,
-                                                                  bottom: 4),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Text(
-                                                                'Feeling Sad',
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: TextStyle(
-                                                                    decoration:
-                                                                        TextDecoration
-                                                                            .none,
-                                                                    fontSize:
-                                                                        14,
-                                                                    color: const Color(
-                                                                        0xff9bb067),
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal),
-                                                                maxLines: 9999,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(width: 8),
-                                                      Container(
-                                                        height: 29,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(32),
-                                                        ),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  left: 8,
-                                                                  top: 4,
-                                                                  right: 8,
-                                                                  bottom: 4),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Text(
-                                                                ',Depresse|',
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: TextStyle(
-                                                                    decoration:
-                                                                        TextDecoration
-                                                                            .none,
-                                                                    fontSize:
-                                                                        14,
-                                                                    color: const Color(
-                                                                        0xff736a66),
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal),
-                                                                maxLines: 9999,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(height: 32),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Image.asset(
-                                                'images/image_94727.png',
-                                                width: 20,
-                                                height: 20,
-                                              ),
-                                              const SizedBox(width: 4),
-                                              Text(
-                                                '2/10',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    decoration:
-                                                        TextDecoration.none,
-                                                    fontSize: 12,
-                                                    color:
-                                                        const Color(0xff736a66),
-                                                    fontWeight:
-                                                        FontWeight.normal),
-                                                maxLines: 9999,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 24),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Most Common:',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                decoration: TextDecoration.none,
-                                fontSize: 14,
-                                color: const Color(0xff4e3321),
-                                fontWeight: FontWeight.normal),
-                            maxLines: 9999,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          const SizedBox(width: 8),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                height: 24,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xffec7d1c),
-                                  borderRadius: BorderRadius.circular(32),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 8, top: 4, right: 8, bottom: 4),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            'Depressed',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                decoration: TextDecoration.none,
-                                                fontSize: 12,
-                                                color: const Color(0xffffffff),
-                                                fontWeight: FontWeight.normal),
-                                            maxLines: 9999,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                          const SizedBox(width: 4),
-                                          Image.asset(
-                                            'images/image_I94732148470578.png',
-                                            width: 16,
-                                            height: 16,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 8),
-                              Container(
-                                height: 24,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xffec7d1c),
-                                  borderRadius: BorderRadius.circular(32),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 8, top: 4, right: 8, bottom: 4),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            'Angry',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                decoration: TextDecoration.none,
-                                                fontSize: 12,
-                                                color: const Color(0xffffffff),
-                                                fontWeight: FontWeight.normal),
-                                            maxLines: 9999,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                          const SizedBox(width: 4),
-                                          Image.asset(
-                                            'images/image_I94733148470578.png',
-                                            width: 16,
-                                            height: 16,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 32),
-                  Container(
-                    width: 343,
-                    height: 56,
-                    decoration: BoxDecoration(
-                      color: const Color(0xff4e3321),
-                      borderRadius: BorderRadius.circular(1000),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 24, top: 16, right: 24, bottom: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Continue',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    decoration: TextDecoration.none,
-                                    fontSize: 18,
-                                    color: const Color(0xffffffff),
-                                    fontWeight: FontWeight.normal),
-                                maxLines: 9999,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              const SizedBox(width: 12),
-                              Image.asset(
-                                'images/image_I9473460428831.png',
-                                width: 24,
-                                height: 24,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  SizedBox(width: 12),
+                  Icon(Icons.arrow_forward, color: Colors.white),
                 ],
               ),
+            ),
+
+            const SizedBox(height: 30),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSymptomChip(String symptom) {
+    return GestureDetector(
+      onTap: () {
+        _controller.text = symptom;
+        setState(() {
+          enteredSymptoms.remove(symptom);
+        });
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color(0xFF9BB168),
+          borderRadius: BorderRadius.circular(32),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              symptom,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+              ),
+            ),
+            const SizedBox(width: 6),
+            GestureDetector(
+              onTap: () => _removeSymptom(symptom),
+              child: const Icon(Icons.close, color: Colors.white, size: 16),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSuggestionChip(String symptom) {
+    return GestureDetector(
+      onTap: () => _addSuggestedSymptom(symptom),
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color(0xFFF2F5EB),
+          borderRadius: BorderRadius.circular(32),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+        child: Text(
+          symptom,
+          style: const TextStyle(
+            color: Color(0xFF9BB168),
+            fontSize: 14,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// Dummy Next Screen
+class NextScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF7F4F2),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF4E3321)),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text(
+          "Next Screen",
+          style: TextStyle(
+              fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF4E3321)),
+        ),
+        centerTitle: true,
+      ),
+      body: const Center(
+        child: Text(
+          "This is the next screen!",
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.brown),
         ),
       ),
     );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mentalhealth/CommonFunctions/common_widgets.dart';
+import 'package:mentalhealth/InitialAssesmentScreens/doctorconsultscreenquery.dart'; // Import your next screen
 
 class SleepQualityRatingScreen extends StatefulWidget {
   const SleepQualityRatingScreen({super.key});
@@ -189,7 +191,10 @@ class _SleepQualityRatingScreenState extends State<SleepQualityRatingScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigate to next screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const DoctorConsultScreen()), // Navigate to next screen
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF4E3321),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:mentalhealth/ProfileSetupScreens/profilepersonalinfosettingsscreen.dart';
 
 class ExpressionAnalysisScreen extends StatefulWidget {
   @override
@@ -11,7 +12,23 @@ class _ExpressionAnalysisScreenState extends State<ExpressionAnalysisScreen> {
   TextEditingController _textController = TextEditingController();
   stt.SpeechToText _speech = stt.SpeechToText();
   bool _isListening = false;
-  String _recordedText = '';
+  bool _isTextNotEmpty = false; // Track if text is entered
+
+  @override
+  void initState() {
+    super.initState();
+    _textController.addListener(() {
+      setState(() {
+        _isTextNotEmpty = _textController.text.isNotEmpty;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
 
   void _startListening() async {
     bool available = await _speech.initialize(
@@ -31,8 +48,7 @@ class _ExpressionAnalysisScreenState extends State<ExpressionAnalysisScreen> {
       _speech.listen(
         onResult: (result) {
           setState(() {
-            _recordedText = result.recognizedWords;
-            _textController.text = _recordedText;
+            _textController.text = result.recognizedWords;
           });
         },
       );
@@ -152,18 +168,18 @@ class _ExpressionAnalysisScreenState extends State<ExpressionAnalysisScreen> {
 
             // Continue Button
             ElevatedButton(
-              onPressed: _textController.text.isNotEmpty
+              onPressed: _isTextNotEmpty
                   ? () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ThankYouScreen(),
+                    builder: (context) => ProfileSetupScreen(),
                   ),
                 );
               }
-                  : null,
+                  : null, // Disable button if text is empty
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF4E3321),
+                backgroundColor: _isTextNotEmpty ? const Color(0xFF4E3321) : Colors.grey,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(1000),
                 ),

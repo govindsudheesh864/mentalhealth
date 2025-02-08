@@ -1,325 +1,166 @@
 import 'package:flutter/material.dart';
-import 'package:grouped_list/grouped_list.dart';
+import 'package:mentalhealth/Loadingscreens/compilingdatascreen.dart';
 
-class CodiaPage extends StatefulWidget {
-  CodiaPage({super.key});
-
+class NotificationSetupScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _CodiaPage();
+  _NotificationSetupScreenState createState() =>
+      _NotificationSetupScreenState();
 }
 
-class _CodiaPage extends State<CodiaPage> {
+class _NotificationSetupScreenState extends State<NotificationSetupScreen> {
+  bool chatbotNotification = true;
+  bool wellnessNotification = false;
+  bool communityNotification = true;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Container(
-        width: 375,
-        height: 812,
-        decoration: BoxDecoration(
-          color: const Color(0xffffffff),
-          borderRadius: BorderRadius.circular(40),
+    return Scaffold(
+      backgroundColor: const Color(0xFFF7F4F2),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF4E3321)),
+          onPressed: () => Navigator.pop(context),
         ),
-        child: Stack(
-          children: [
-            Positioned(
-              left: -292,
-              width: 960,
-              top: -517,
-              height: 960,
-              child: Image.asset(
-                'images/image1_229722.png',
-                width: 960,
-                height: 960,
-              ),
+        title: const Text(
+          "Notification Setup",
+          style: TextStyle(
+              fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF4E3321)),
+        ),
+        centerTitle: true,
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: 20),
+
+          // Illustration Image
+          SizedBox(
+            height: 200,
+            child: Image.asset(
+              'lib/images/notification_vector.png', // Add the appropriate asset
+              fit: BoxFit.contain,
             ),
-            Positioned(
-              left: 16,
-              top: 483,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 343,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'images/image_I22981451835313.png',
-                                          width: 48,
-                                          height: 48,
-                                        ),
-                                        const SizedBox(width: 8),
-                                        Text(
-                                          'Chatbot Notification',
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                              decoration: TextDecoration.none,
-                                              fontSize: 16,
-                                              color: const Color(0xff4b3425),
-                                              fontWeight: FontWeight.normal),
-                                          maxLines: 9999,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(width: 69),
-                                    Image.asset(
-                                      'images/image_I22981460929943.png',
-                                      width: 56,
-                                      height: 28,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 24),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'images/image_I22981551835313.png',
-                                          width: 48,
-                                          height: 48,
-                                        ),
-                                        const SizedBox(width: 8),
-                                        Text(
-                                          'Wellness Notification',
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                              decoration: TextDecoration.none,
-                                              fontSize: 16,
-                                              color: const Color(0xff4b3425),
-                                              fontWeight: FontWeight.normal),
-                                          maxLines: 9999,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(width: 69),
-                                    Image.asset(
-                                      'images/image_I22981560929943.png',
-                                      width: 56,
-                                      height: 28,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 24),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'images/image_I22981651835313.png',
-                                          width: 48,
-                                          height: 48,
-                                        ),
-                                        const SizedBox(width: 8),
-                                        Text(
-                                          'Community Notification',
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                              decoration: TextDecoration.none,
-                                              fontSize: 16,
-                                              color: const Color(0xff4b3425),
-                                              fontWeight: FontWeight.normal),
-                                          maxLines: 9999,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(width: 69),
-                                    Image.asset(
-                                      'images/image_I22981660929943.png',
-                                      width: 56,
-                                      height: 28,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 32),
-                  Container(
-                    width: 343,
-                    height: 56,
-                    decoration: BoxDecoration(
-                      color: const Color(0xff4b3425),
-                      borderRadius: BorderRadius.circular(1000),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 24, top: 16, right: 24, bottom: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Continue',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    decoration: TextDecoration.none,
-                                    fontSize: 18,
-                                    color: const Color(0xffffffff),
-                                    fontWeight: FontWeight.normal),
-                                maxLines: 9999,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              const SizedBox(width: 16),
-                              Image.asset(
-                                'images/image_I22981760428831.png',
-                                width: 24,
-                                height: 24,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+          ),
+
+          const SizedBox(height: 30),
+
+          // Notification Options
+          _buildNotificationOption(
+            "Chatbot Notification",
+            chatbotNotification,
+            "lib/images/chatbot_icon.png",
+                (value) {
+              setState(() {
+                chatbotNotification = value;
+              });
+            },
+          ),
+          _buildNotificationOption(
+            "Wellness Notification",
+            wellnessNotification,
+            "lib/images/wellness_icon.png",
+                (value) {
+              setState(() {
+                wellnessNotification = value;
+              });
+            },
+          ),
+          _buildNotificationOption(
+            "Community Notification",
+            communityNotification,
+            "lib/images/community_icon.png",
+                (value) {
+              setState(() {
+                communityNotification = value;
+              });
+            },
+          ),
+
+          const SizedBox(height: 30),
+
+          // Continue Button
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CompilingDataScreen()),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF4E3321),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(1000),
               ),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
             ),
-            Positioned(
-              left: 0,
-              width: 375,
-              bottom: 0,
-              height: 34,
-              child: Image.asset(
-                'images/image2_229818.png',
-                width: 375,
-                height: 34,
+            child: const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Continue",
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+                SizedBox(width: 12),
+                Icon(Icons.arrow_forward, color: Colors.white),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+
+  // Widget for each notification option
+  Widget _buildNotificationOption(
+      String title, bool isEnabled, String iconPath, Function(bool) onChanged) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Image.asset(
+                iconPath,
+                width: 40,
+                height: 40,
               ),
-            ),
-            Positioned(
-              left: 0,
-              width: 375,
-              top: 0,
-              height: 44,
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 293.667,
-                    width: 66.661,
-                    top: 17.331,
-                    height: 11.336,
-                    child: Image.asset(
-                      'images/image1_I22981950512213.png',
-                      width: 66.661,
-                      height: 11.336,
-                    ),
-                  ),
-                  Positioned(
-                    left: 21,
-                    width: 54,
-                    top: 12,
-                    height: 21,
-                    child: Image.asset(
-                      'images/image2_I22981950512229.png',
-                      width: 54,
-                      height: 21,
-                    ),
-                  ),
-                ],
+              const SizedBox(width: 12),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF4E3321),
+                  fontWeight: FontWeight.w500,
+                ),
               ),
-            ),
-            Positioned(
-              left: 16,
-              width: 343,
-              top: 60,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'images/image_I22982052316891.png',
-                    width: 48,
-                    height: 48,
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      child: Text(
-                        'Notification Setup',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 20,
-                            color: const Color(0xff4b3425),
-                            fontWeight: FontWeight.normal),
-                        maxLines: 9999,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
+          Switch(
+            value: isEnabled,
+            onChanged: onChanged,
+            activeColor: const Color(0xFF9BB168),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// Dummy Next Screen
+class NextScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF7F4F2),
+      body: const Center(
+        child: Text(
+          "Next Screen Placeholder",
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
       ),
     );

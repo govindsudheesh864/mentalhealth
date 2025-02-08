@@ -1,777 +1,239 @@
 import 'package:flutter/material.dart';
-import 'package:grouped_list/grouped_list.dart';
+import 'package:mentalhealth/NotificationScreens/notificationsetupscreen.dart';
 
-class CodiaPage extends StatefulWidget {
-  CodiaPage({super.key});
-
+class ProfileSetupScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _CodiaPage();
+  _ProfileSetupScreenState createState() => _ProfileSetupScreenState();
 }
 
-class _CodiaPage extends State<CodiaPage> {
+class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  String _selectedGender = 'Trans Female';
+  String _selectedLocation = 'Tokyo, Japan';
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Container(
-        width: 375,
-        height: 871,
-        decoration: BoxDecoration(
-          color: const Color(0xfff7f3f2),
-          borderRadius: BorderRadius.circular(40),
-        ),
-        child: Stack(
+    return Scaffold(
+      backgroundColor: const Color(0xFFF7F4F2),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Positioned(
-              left: 0,
-              width: 375,
-              top: 0,
-              height: 44,
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 293.667,
-                    width: 66.661,
-                    top: 17.331,
-                    height: 11.336,
-                    child: Image.asset(
-                      'images/image1_I221413350512213.png',
-                      width: 66.661,
-                      height: 11.336,
+            // Green Header with Profile Image
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                Container(
+                  height: 180,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF9BB068),
+                    borderRadius: BorderRadius.vertical(bottom: Radius.circular(40)),
+                  ),
+                ),
+                Column(
+                  children: [
+                    const SizedBox(height: 60),
+                    const Text(
+                      "Profile Setup",
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                     ),
-                  ),
-                  Positioned(
-                    left: 21,
-                    width: 54,
-                    top: 12,
-                    height: 21,
-                    child: Image.asset(
-                      'images/image2_I221413350512229.png',
-                      width: 54,
-                      height: 21,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              left: 0,
-              width: 375,
-              bottom: 0,
-              height: 34,
-              child: Image.asset(
-                'images/image_2214134.png',
-                width: 375,
-                height: 34,
-              ),
-            ),
-            Positioned(
-              left: 16,
-              width: 343,
-              top: 60,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'images/image_I221413552316891.png',
-                    width: 48,
-                    height: 48,
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      child: Text(
-                        'Personal Information',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 20,
-                            color: const Color(0xff4b3425),
-                            fontWeight: FontWeight.normal),
-                        maxLines: 9999,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              left: 16,
-              top: 140,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 343,
-                    height: 81,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    const SizedBox(height: 20),
+                    Stack(
+                      alignment: Alignment.bottomRight,
                       children: [
-                        Text(
-                          'Password',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              decoration: TextDecoration.none,
-                              fontSize: 14,
-                              color: const Color(0xff4b3425),
-                              fontWeight: FontWeight.normal),
-                          maxLines: 9999,
-                          overflow: TextOverflow.ellipsis,
+                        CircleAvatar(
+                          radius: 56,
+                          backgroundImage: AssetImage('assets/images/profile.png'),
                         ),
-                        const SizedBox(height: 8),
-                        Expanded(
-                          child: Container(
-                            height: double.infinity,
-                            decoration: BoxDecoration(
-                              color: const Color(0xffffffff),
-                              borderRadius: BorderRadius.circular(1234),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: const Color(0x0c4b3425),
-                                    offset: Offset(0, 8),
-                                    blurRadius: 16),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                mainAxisSize: MainAxisSize.min,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Image.asset(
-                                                    'images/image_I221413751835891.png',
-                                                    width: 24,
-                                                    height: 24,
-                                                  ),
-                                                  const SizedBox(width: 8),
-                                                  Text(
-                                                    '******************',
-                                                    textAlign: TextAlign.left,
-                                                    style: TextStyle(
-                                                        decoration:
-                                                            TextDecoration.none,
-                                                        fontSize: 16,
-                                                        color: const Color(
-                                                            0xa31f160f),
-                                                        fontWeight:
-                                                            FontWeight.normal),
-                                                    maxLines: 9999,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                ],
-                                              ),
-                                              const SizedBox(width: 134),
-                                              Image.asset(
-                                                'images/image_I221413751835994.png',
-                                                width: 24,
-                                                height: 24,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
+                        CircleAvatar(
+                          backgroundColor: const Color(0xFF4E3321),
+                          radius: 20,
+                          child: IconButton(
+                            icon: const Icon(Icons.link, color: Colors.white),
+                            onPressed: () {
+                              // Implement image upload logic
+                            },
                           ),
                         ),
                       ],
                     ),
-                  ),
-                  const SizedBox(height: 24),
-                  SizedBox(
-                    width: 343,
-                    height: 81,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Date of Birth',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              decoration: TextDecoration.none,
-                              fontSize: 14,
-                              color: const Color(0xff4b3425),
-                              fontWeight: FontWeight.normal),
-                          maxLines: 9999,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        const SizedBox(height: 8),
-                        Expanded(
-                          child: Container(
-                            height: double.infinity,
-                            decoration: BoxDecoration(
-                              color: const Color(0xffffffff),
-                              borderRadius: BorderRadius.circular(1234),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: const Color(0x0c4b3425),
-                                    offset: Offset(0, 8),
-                                    blurRadius: 16),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                mainAxisSize: MainAxisSize.min,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Image.asset(
-                                                    'images/image_I221413851835891.png',
-                                                    width: 24,
-                                                    height: 24,
-                                                  ),
-                                                  const SizedBox(width: 8),
-                                                  Text(
-                                                    'Jun 24, 2005',
-                                                    textAlign: TextAlign.left,
-                                                    style: TextStyle(
-                                                        decoration:
-                                                            TextDecoration.none,
-                                                        fontSize: 16,
-                                                        color: const Color(
-                                                            0xa31f160f),
-                                                        fontWeight:
-                                                            FontWeight.normal),
-                                                    maxLines: 9999,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                ],
-                                              ),
-                                              const SizedBox(width: 134),
-                                              Image.asset(
-                                                'images/image_I221413851835994.png',
-                                                width: 24,
-                                                height: 24,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Choose Your Profile Picture',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 14,
-                            color: const Color(0xff4b3425),
-                            fontWeight: FontWeight.normal),
-                        maxLines: 9999,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 12),
-                      Image.asset(
-                        'images/image_2214141.png',
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  SizedBox(
-                    width: 343,
-                    height: 81,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Location',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              decoration: TextDecoration.none,
-                              fontSize: 14,
-                              color: const Color(0xff4b3425),
-                              fontWeight: FontWeight.normal),
-                          maxLines: 9999,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        const SizedBox(height: 8),
-                        Expanded(
-                          child: Container(
-                            height: double.infinity,
-                            decoration: BoxDecoration(
-                              color: const Color(0xffffffff),
-                              borderRadius: BorderRadius.circular(1234),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: const Color(0x0c4b3425),
-                                    offset: Offset(0, 8),
-                                    blurRadius: 16),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                mainAxisSize: MainAxisSize.min,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Image.asset(
-                                                    'images/image_I221414951835891.png',
-                                                    width: 24,
-                                                    height: 24,
-                                                  ),
-                                                  const SizedBox(width: 8),
-                                                  Text(
-                                                    'Tokyo, Japan',
-                                                    textAlign: TextAlign.left,
-                                                    style: TextStyle(
-                                                        decoration:
-                                                            TextDecoration.none,
-                                                        fontSize: 16,
-                                                        color: const Color(
-                                                            0xa31f160f),
-                                                        fontWeight:
-                                                            FontWeight.normal),
-                                                    maxLines: 9999,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                ],
-                                              ),
-                                              const SizedBox(width: 134),
-                                              Image.asset(
-                                                'images/image_I221414951835994.png',
-                                                width: 24,
-                                                height: 24,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: 343,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Gender',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  decoration: TextDecoration.none,
-                                  fontSize: 14,
-                                  color: const Color(0xff4b3425),
-                                  fontWeight: FontWeight.normal),
-                              maxLines: 9999,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            const SizedBox(width: 211),
-                            Text(
-                              'Choose only 1',
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                  decoration: TextDecoration.none,
-                                  fontSize: 14,
-                                  color: const Color(0xa31f160f),
-                                  fontWeight: FontWeight.normal),
-                              maxLines: 9999,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      SizedBox(
-                        width: 344,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 164,
-                              decoration: BoxDecoration(
-                                color: const Color(0xffffffff),
-                                borderRadius: BorderRadius.circular(1234),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: const Color(0x0c4b3425),
-                                      offset: Offset(0, 8),
-                                      blurRadius: 16),
-                                ],
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: Container(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Male',
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                      decoration:
-                                                          TextDecoration.none,
-                                                      fontSize: 16,
-                                                      color: const Color(
-                                                          0xa31f160f),
-                                                      fontWeight:
-                                                          FontWeight.normal),
-                                                  maxLines: 9999,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                                const SizedBox(width: 134),
-                                                Image.asset(
-                                                  'images/image_I221415562334470.png',
-                                                  width: 24,
-                                                  height: 24,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            Container(
-                              width: 164,
-                              decoration: BoxDecoration(
-                                color: const Color(0xfffe804b),
-                                borderRadius: BorderRadius.circular(1234),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: Container(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Female',
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                      decoration:
-                                                          TextDecoration.none,
-                                                      fontSize: 16,
-                                                      color: const Color(
-                                                          0xffffffff),
-                                                      fontWeight:
-                                                          FontWeight.normal),
-                                                  maxLines: 9999,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                                const SizedBox(width: 134),
-                                                Image.asset(
-                                                  'images/image_I221415662334388.png',
-                                                  width: 24,
-                                                  height: 24,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            Container(
-                              width: 164,
-                              decoration: BoxDecoration(
-                                color: const Color(0xfffe804b),
-                                borderRadius: BorderRadius.circular(1234),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: Container(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Transgender',
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                      decoration:
-                                                          TextDecoration.none,
-                                                      fontSize: 16,
-                                                      color: const Color(
-                                                          0xffffffff),
-                                                      fontWeight:
-                                                          FontWeight.normal),
-                                                  maxLines: 9999,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                                const SizedBox(width: 134),
-                                                Image.asset(
-                                                  'images/image_I221415762334388.png',
-                                                  width: 24,
-                                                  height: 24,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            Container(
-                              width: 164,
-                              decoration: BoxDecoration(
-                                color: const Color(0xffffffff),
-                                borderRadius: BorderRadius.circular(1234),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: const Color(0x0c4b3425),
-                                      offset: Offset(0, 8),
-                                      blurRadius: 16),
-                                ],
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: Container(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Other',
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                      decoration:
-                                                          TextDecoration.none,
-                                                      fontSize: 16,
-                                                      color: const Color(
-                                                          0xa31f160f),
-                                                      fontWeight:
-                                                          FontWeight.normal),
-                                                  maxLines: 9999,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                                const SizedBox(width: 134),
-                                                Image.asset(
-                                                  'images/image_I221415862334470.png',
-                                                  width: 24,
-                                                  height: 24,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              ],
             ),
-            Positioned(
-              left: 16,
-              width: 343,
-              top: 757,
-              height: 64,
-              child: Container(
-                width: 343,
-                height: 64,
-                decoration: BoxDecoration(
-                  color: const Color(0xff4b3425),
+            const SizedBox(height: 40),
+
+            // Input Fields
+            _buildInputField(label: 'Full Name', icon: Icons.person, controller: _nameController),
+            const SizedBox(height: 16),
+            _buildInputField(label: 'Email Address', icon: Icons.email, controller: _emailController),
+            const SizedBox(height: 16),
+            _buildPasswordField(label: 'Password', icon: Icons.lock, controller: _passwordController),
+            const SizedBox(height: 16),
+
+            // Gender Selection
+            _buildDropdownField(
+              label: 'Gender',
+              icon: Icons.transgender,
+              value: _selectedGender,
+              items: ['Male', 'Female', 'Trans Male', 'Trans Female', 'Non-binary'],
+              onChanged: (value) {
+                setState(() {
+                  _selectedGender = value!;
+                });
+              },
+            ),
+            const SizedBox(height: 16),
+
+            // Location Selection
+            _buildDropdownField(
+              label: 'Location',
+              icon: Icons.location_on,
+              value: _selectedLocation,
+              items: ['Tokyo, Japan', 'New York, USA', 'London, UK', 'Paris, France'],
+              onChanged: (value) {
+                setState(() {
+                  _selectedLocation = value!;
+                });
+              },
+            ),
+
+            const SizedBox(height: 40),
+
+            // Continue Button
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationSetupScreen()));
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF4E3321),
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(1000),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 32, top: 16, right: 32, bottom: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Save Settings',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                decoration: TextDecoration.none,
-                                fontSize: 18,
-                                color: const Color(0xffffffff),
-                                fontWeight: FontWeight.normal),
-                            maxLines: 9999,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          const SizedBox(width: 16),
-                          Image.asset(
-                            'images/image_I221415931245127.png',
-                            width: 24,
-                            height: 24,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+              ),
+              child: const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text("Continue", style: TextStyle(fontSize: 18, color: Colors.white)),
+                  SizedBox(width: 12),
+                  Icon(Icons.arrow_forward, color: Colors.white),
+                ],
               ),
             ),
+
+            const SizedBox(height: 30),
           ],
+        ),
+      ),
+    );
+  }
+
+  // Helper method to build input fields
+  Widget _buildInputField({required String label, required IconData icon, required TextEditingController controller}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label, style: TextStyle(fontSize: 14, color: Color(0xFF4E3321))),
+          const SizedBox(height: 8),
+          TextField(
+            controller: controller,
+            decoration: InputDecoration(
+              prefixIcon: Icon(icon, color: Color(0xFF4E3321)),
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(32), borderSide: BorderSide.none),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Helper method to build password field
+  Widget _buildPasswordField({required String label, required IconData icon, required TextEditingController controller}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label, style: TextStyle(fontSize: 14, color: Color(0xFF4E3321))),
+          const SizedBox(height: 8),
+          TextField(
+            controller: controller,
+            obscureText: true,
+            decoration: InputDecoration(
+              prefixIcon: Icon(icon, color: Color(0xFF4E3321)),
+              suffixIcon: Icon(Icons.visibility_off, color: Color(0xFF4E3321)),
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(32), borderSide: BorderSide.none),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Helper method to build dropdown fields
+  Widget _buildDropdownField({
+    required String label,
+    required IconData icon,
+    required String value,
+    required List<String> items,
+    required ValueChanged<String?> onChanged,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label, style: TextStyle(fontSize: 14, color: Color(0xFF4E3321))),
+          const SizedBox(height: 8),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(32)),
+            child: DropdownButton<String>(
+              value: value,
+              isExpanded: true,
+              underline: SizedBox(),
+              icon: Icon(Icons.arrow_drop_down, color: Color(0xFF4E3321)),
+              items: items.map((item) {
+                return DropdownMenuItem(value: item, child: Text(item));
+              }).toList(),
+              onChanged: onChanged,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// Dummy Next Screen
+class NextScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF7F4F2),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text(
+          "Next Page",
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF4E3321)),
+        ),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: const Text(
+          "Welcome to the Next Screen!",
+          style: TextStyle(fontSize: 22, color: Color(0xFF4E3321)),
         ),
       ),
     );

@@ -1,137 +1,104 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:grouped_list/grouped_list.dart';
+import 'package:mentalhealth/Loadingscreens/allsetscreen.dart';
 
-class CodiaPage extends StatefulWidget {
-  CodiaPage({super.key});
-
+class CompilingDataScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _CodiaPage();
+  _CompilingDataScreenState createState() => _CompilingDataScreenState();
 }
 
-class _CodiaPage extends State<CodiaPage> {
+class _CompilingDataScreenState extends State<CompilingDataScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Start loading animation
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    )..repeat(reverse: true);
+
+    _animation = Tween<double>(begin: 0.5, end: 1.0).animate(_controller);
+
+    // Wait for 5 seconds and navigate to next screen
+    Future.delayed(const Duration(seconds: 5), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HealthScoreScreen()),
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Container(
-        width: 375,
-        height: 812,
-        decoration: BoxDecoration(
-          color: const Color(0xfffe804b),
-          borderRadius: BorderRadius.circular(40),
-        ),
-        child: Stack(
+    return Scaffold(
+      backgroundColor: const Color(0xFFFE814B),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Positioned(
-              left: 0,
-              width: 375,
-              bottom: 0,
-              height: 34,
+            // Animated Loading Icon
+            ScaleTransition(
+              scale: _animation,
               child: Image.asset(
-                'images/image_229822.png',
-                width: 375,
-                height: 34,
+                'lib/images/loading_icon.png', // Replace with your actual asset
+                width: 72,
+                height: 72,
               ),
             ),
-            Positioned(
-              left: 0,
-              width: 375,
-              top: 0,
-              height: 44,
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 293.667,
-                    width: 66.661,
-                    top: 17.331,
-                    height: 11.336,
-                    child: Image.asset(
-                      'images/image1_I22982350512213.png',
-                      width: 66.661,
-                      height: 11.336,
-                    ),
-                  ),
-                  Positioned(
-                    left: 21,
-                    width: 54,
-                    top: 12,
-                    height: 21,
-                    child: Image.asset(
-                      'images/image2_I22982350512229.png',
-                      width: 54,
-                      height: 21,
-                    ),
-                  ),
-                ],
+            const SizedBox(height: 24),
+
+            // "Compiling Data..." Text
+            const Text(
+              "Compiling Data...",
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
-            Positioned(
-              left: 40,
-              top: 300,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'images/image_229825.png',
-                    width: 72,
-                    height: 72,
-                  ),
-                  const SizedBox(height: 32),
-                  SizedBox(
-                    width: 296,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                child: Text(
-                                  'Compiling Data...',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      decoration: TextDecoration.none,
-                                      fontSize: 30,
-                                      color: const Color(0xffffffff),
-                                      fontWeight: FontWeight.normal),
-                                  maxLines: 9999,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                child: Text(
-                                  'Please wait... We’re calculating the data based on your asessment inputs.',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      decoration: TextDecoration.none,
-                                      fontSize: 18,
-                                      color: const Color(0xffffffff),
-                                      fontWeight: FontWeight.normal),
-                                  maxLines: 9999,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+
+            const SizedBox(height: 12),
+
+            // Subtitle Text
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Text(
+                "Please wait... We’re calculating the data based on your assessment inputs.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+// Dummy Next Screen
+class NextScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: const Center(
+        child: Text(
+          "Next Screen Placeholder",
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
       ),
     );
